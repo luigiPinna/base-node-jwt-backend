@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { DataSource } from "typeorm";
 import { User } from "./entity/User";
 import { Role } from "./entity/Role";
@@ -9,10 +12,11 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME!,
   password: process.env.DB_PASSWORD!,
   database: process.env.DB_NAME!,
-  synchronize: process.env.TYPEORM_SYNC === 'true',
+  synchronize: process.env.TYPEORM_SYNC === 'true', // Disabilita in produzione
   logging: process.env.TYPEORM_LOGGING === 'true',
   entities: [User, Role],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
 });
+
 
