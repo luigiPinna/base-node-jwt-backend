@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Output di TypeScript
+dist/
+
+# Log files
+*.log
+
+# Ambiente locale
+.env
+
+# Database locale
+*.sqlite
+
+# File di configurazione di sistema
+.DS_Store
+
+# File di lock
+package-lock.json
+yarn.lock
