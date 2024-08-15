@@ -30,7 +30,10 @@ export class AuthService {
         try {
             return await this.userRepository.save(user);
         } catch (error) {
-            logger.error("Error saving user", { error });
+            logger.error("Error saving user", {
+                message: error instanceof Error ? error.message : 'Unknown error',
+                stack: error instanceof Error ? error.stack : undefined
+            });
             throw new Error("Registration failed");
         }
     }

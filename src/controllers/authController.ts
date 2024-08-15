@@ -27,7 +27,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
         const user = await authService.register(email, password, role);
         res.status(201).json({ message: "User registered successfully", userId: user.id });
     } catch (error) {
-        logger.error("Registration error", { error });
+        logger.error("Registration error:", {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined });
         if (error instanceof Error && error.message === "User already exists") {
             return res.status(409).json({ message: "User already exists" });
         }
