@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { IsEmail, Length } from "class-validator";
 import bcrypt from "bcryptjs";
 import { Role } from "./Role";
@@ -8,19 +8,25 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   @IsEmail()
   email: string;
 
   @Column()
-  @Length(4, 100)
+  @Length(6, 100)
   password: string;
 
   @ManyToOne(() => Role, (role) => role.users)
   role: Role;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
   hashPassword(): void {
-    this.password = bcrypt.hashSync(this.password, 8);
+    this.password = bcrypt.hashSync(this.password, 12);  // 12 rounds per maggiore sicurezza
   }
 
   checkIfUnencryptedPasswordIsValid(unencryptedPassword: string): boolean {
