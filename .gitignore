@@ -1,6 +1,9 @@
 # Node modules
 node_modules/
 
+# idea files
+.idea
+
 # Output di TypeScript
 dist/
 
