@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
-
 import { DataSource } from "typeorm";
-import { User } from "./entity/User";
-import { Role } from "./entity/Role";
+import { User } from "./models/User";
+import { Role } from "./models/Role";
+
+dotenv.config();
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -12,11 +12,10 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME!,
   password: process.env.DB_PASSWORD!,
   database: process.env.DB_NAME!,
-  synchronize: process.env.TYPEORM_SYNC === 'true', // Disabilita in produzione
-  logging: process.env.TYPEORM_LOGGING === 'true',
+  synchronize: process.env.NODE_ENV !== 'production' && process.env.TYPEORM_SYNC === 'true',
+  logging: process.env.NODE_ENV !== 'production' && process.env.TYPEORM_LOGGING === 'true',
   entities: [User, Role],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
-
-
