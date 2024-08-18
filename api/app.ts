@@ -21,7 +21,7 @@ app.use("/auth", authRoutes);
 app.use("/health", healthRoutes);
 
 // Entities
-app.use("/articles", articleRoutes);
+// app.use("/articles", articleRoutes);
 
 app.use(errorHandler);
 
