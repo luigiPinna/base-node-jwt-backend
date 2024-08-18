@@ -17,8 +17,8 @@ app.get("/", (req: Request, res: Response) => {
     res.send("Welcome to the API!");
 });
 
-app.use("/auth", authRoutes);
-app.use("/health", healthRoutes);
+// app.use("/auth", authRoutes);
+// app.use("/health", healthRoutes);
 
 // Entities
 // app.use("/articles", articleRoutes);
