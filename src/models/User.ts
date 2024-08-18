@@ -1,7 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany
+} from "typeorm";
 import { IsEmail, Length } from "class-validator";
 import bcrypt from "bcryptjs";
 import { Role } from "./Role";
+import {Article} from "./Article";
 
 @Entity()
 export class User {
@@ -32,4 +41,7 @@ export class User {
   checkIfUnencryptedPasswordIsValid(unencryptedPassword: string): boolean {
     return bcrypt.compareSync(unencryptedPassword, this.password);
   }
+
+  @OneToMany(() => Article, article => article.author)
+  articles: Article[];
 }
