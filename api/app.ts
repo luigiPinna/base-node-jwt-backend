@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
-import errorHandler from "./middlewares/errorHandler";
-import requestLogger from "./middlewares/requestLogger";
-import authRoutes from "./routes/auth";
-import healthRoutes from "./routes/health";
-import articleRoutes from "./routes/article";
+import errorHandler from "../src/middlewares/errorHandler";
+import requestLogger from "../src/middlewares/requestLogger";
+import authRoutes from "../src/routes/auth";
+import healthRoutes from "../src/routes/health";
+import articleRoutes from "../src/routes/article";
 
 const app = express();
 

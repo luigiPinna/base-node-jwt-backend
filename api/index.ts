@@ -1,16 +1,16 @@
 import app from "./app";
-import { AppDataSource } from "./data-source";
-import logger from "./utils/logger";
+import { AppDataSource } from "../src/data-source";
+import logger from "../src/utils/logger";
+import config from "../src/config/config";
 
-// Inizializza il database
+const PORT = process.env.PORT || 3000;
+
 AppDataSource.initialize()
     .then(() => {
         logger.info("Connected to the database");
-    })
-    .catch((error) => {
-        logger.error("Error during Data Source initialization", error);
-        // Aggiungi una logica per gestire errori critici se necessario
-    });
 
-// Esporta l'app per Vercel
-export default app;
+        app.listen(PORT, () => {
+            logger.info(`Server has started at port ${PORT}`);
+        });
+    })
+    .catch((error) => logger.error("Error during Data Source initialization", error));

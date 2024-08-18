@@ -10,7 +10,7 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types",
-      "./api/types"
+      "./src/types"
     ]
   }
 }
