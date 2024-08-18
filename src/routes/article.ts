@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createArticle, getArticles, getArticle, updateArticle, deleteArticle, articleValidation } from "../controllers/articleController";
-import { authMiddleware, isAdmin } from "../middlewares/authMiddleware";
+import { createArticle, getArticles, getArticle, updateArticle, deleteArticle, articleValidation } from "../../src/controllers/articleController";
+import { authMiddleware, isAdmin } from "../../src/middlewares/authMiddleware";
 
 const router = Router();
 
