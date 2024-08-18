@@ -2,7 +2,7 @@
   "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "Backend for portfolio project",
-  "main": "app.ts",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "start": "node dist/server.js",
