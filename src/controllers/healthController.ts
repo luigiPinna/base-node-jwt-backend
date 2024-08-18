@@ -2,6 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { AppDataSource } from "../data-source";
 import logger from "../utils/logger";
 
+export const checkBaseHealth = async (req: Request, res: Response, next: NextFunction) => {
+
+        res.status(200).json({
+            status: "healthy",
+            timestamp: new Date().toISOString()
+        });
+};
+
 export const checkHealth = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Check database connection
